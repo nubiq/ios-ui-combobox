@@ -13,6 +13,9 @@
 
 @interface UIComboBoxSelector : UIViewController <UITableViewDataSource, UITableViewDelegate>
 
+/**
+ * Link to the combo box itself.
+ */
 @property UIComboBox *father;
 
 @end

@@ -21,6 +21,8 @@
 
 UITableView *table;
 
+#pragma mark - Object lifecycle
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -50,7 +52,6 @@ UITableView *table;
     // Dispose of any resources that can be recreated.
 }
 
-
 #pragma mark - TableView
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -71,57 +72,40 @@ UITableView *table;
     
     // Enable cell selection
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-    
-    int tableWidth = tableView.frame.size.width;
-    
-    // Defining labels
-    //UILabel *image = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
-    //                                                          [tableView rowHeight])];
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableWidth, 0, 0.7*tableWidth,
-                                                              [tableView rowHeight])];
-    [text setTextAlignment:NSTextAlignmentLeft];
-    [text setText:[[father textOptions] objectAtIndex:[indexPath row]]];
-    [text setBackgroundColor:[UIColor clearColor]];
-    
-    
-    CGRect imageRect = CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
-                                  [tableView rowHeight]);
-    
-    // Draw triangle
-    NSUInteger width = imageRect.size.height/4;
-    NSUInteger height = imageRect.size.height/2;
-    CGRect rect = CGRectMake(imageRect.size.width - (width + 10), (imageRect.size.height - height)/2,
-                                   width, height);
-    
-    UIView *triangle;
-    /*
-    if ([father colorOptions] == nil) {
-        triangle = triangle = [[UITriangleView alloc] initWithFrame:rect
-                                                          withColor:[father decorationColor] withPosition:3];
-    } else {
-        triangle = triangle = [[UITriangleView alloc] initWithFrame:rect
-                                                          withColor:[[father colorOptions] objectAtIndex:[indexPath row]]
-                                                       withPosition:3];
-    }
-    
-    if ([father index] == [indexPath row]) {
-        [text setFont:[UIFont boldSystemFontOfSize:20]];
-    } else {
-        [text setFont:[UIFont systemFontOfSize:20]];
-    }*/
+
+    // The colors to use depend on the combo box
     UIColor *presentColor;
     if ([father colorOptions] == nil) {
         presentColor = [UIColor blackColor];
     } else {
         presentColor = [[father colorOptions] objectAtIndex:[indexPath row]];
     }
+        
+    // Defining text label
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableView.frame.size.width, 0,
+                                                              0.7*tableView.frame.size.width,
+                                                              [tableView rowHeight])];
+    [text setTextAlignment:NSTextAlignmentLeft];
+    [text setText:[[father textOptions] objectAtIndex:[indexPath row]]];
+    [text setBackgroundColor:[UIColor clearColor]];
+    [text setTextColor:presentColor];
     
+    // Defining size of the triangle view
+    CGRect imageRect = CGRectMake(0.01*tableView.frame.size.width, 0,
+                                  0.25*tableView.frame.size.width,
+                                  [tableView rowHeight]);
+    
+    NSUInteger width = imageRect.size.height/4;
+    NSUInteger height = imageRect.size.height/2;
+    CGRect rect = CGRectMake(imageRect.size.width - (width + 10), (imageRect.size.height - height)/2,
+                                   width, height);
+    
+    // Defining triangle view
+    UIView *triangle;
     if ([father index] == [indexPath row]) {
         triangle = [[UITriangleView alloc] initWithFrame:rect
                                                withColor:presentColor withPosition:3];
     }
-    
-    [text setTextColor:presentColor];
     
     // Adding subviews to the cell
     [cell addSubview:text];
@@ -134,10 +118,13 @@ UITableView *table;
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    // Update info in the combo box
     [father updateIndex:[indexPath row]];
     
     if (IOS_OLDER_THAN_6) {
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         [self dismissModalViewControllerAnimated:YES];
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }

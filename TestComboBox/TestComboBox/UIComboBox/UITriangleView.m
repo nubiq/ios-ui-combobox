@@ -5,6 +5,8 @@
 //  Created by Noelia on 05/07/13.
 //  Copyright (c) 2013 Noelia. All rights reserved.
 //
+// Code in this file:
+// - Noelia Sales <noelia@nubiq.es>
 
 #import "UITriangleView.h"
 
@@ -12,6 +14,8 @@
 
 @synthesize mainColor;
 @synthesize position;
+
+#pragma mark - Object lifecycle
 
 - (id)initWithFrame:(CGRect)frame
 {
@@ -29,7 +33,9 @@
     
     return self;
 }
-    
+
+#pragma mark - Drawing
+
 - (void)drawRect:(CGRect)rect {
     
     CGContextRef context = UIGraphicsGetCurrentContext();

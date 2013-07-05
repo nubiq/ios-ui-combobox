@@ -24,6 +24,8 @@ float version;
 @synthesize decorationColor;
 @synthesize shadowColor;
 
+#pragma mark - Object lifecycle
+
 - (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
     withTextOptions:(NSMutableArray *)newTextOptions withColorOptions:(NSMutableArray *)newColors
   withDefaultOption:(NSUInteger)newIndex
@@ -63,11 +65,13 @@ float version;
               withColorOptions:nil withDefaultOption:newIndex];
 }
 
+#pragma mark - Drawing
 
 - (void)drawRect:(CGRect)rect
 {    
     NSUInteger radius = 8;
     
+    // Drawing background
     CGContextRef context = UIGraphicsGetCurrentContext();
     
     CGContextSetFillColorWithColor(context, [backColor CGColor]);
@@ -89,7 +93,7 @@ float version;
     
     CGContextFillPath(context);
     
-    // Draw triangle
+    // Drawing a triangle
     NSUInteger width = rect.size.height/3;
     NSUInteger height = rect.size.height/5;
     CGRect circleRect = CGRectMake(rect.size.width - (width + 10), (rect.size.height - height)/2,
@@ -110,27 +114,6 @@ float version;
     CGContextFillPath(context);
 }
 
-
-/*
-// Only override drawRect: if you perform custom drawing.
-// An empty implementation adversely affects performance during animation.
-- (void)drawRect:(CGRect)rect
-{
-    // Drawing code
-}
-*/
-
-- (void)updateIndex:(NSUInteger)newIndex
-{
-    [self setIndex:newIndex];
-    [self setTitle:[textOptions objectAtIndex:newIndex] forState:UIControlStateNormal];
-    if (colorOptions != nil) {
-        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
-    }
-    [self setNeedsDisplay];
-}
-
-
 #pragma mark - Action
 
 - (IBAction)buttonPressed:(id)sender
@@ -143,10 +126,22 @@ float version;
     
     
     if (IOS_OLDER_THAN_6) {
+#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
         [father presentModalViewController:comboBoxSelector animated:YES];
+#pragma GCC diagnostic warning "-Wdeprecated-declarations"
     } else {
         [father presentViewController:comboBoxSelector animated:YES completion:nil];
     }
+}
+
+- (void)updateIndex:(NSUInteger)newIndex
+{
+    [self setIndex:newIndex];
+    [self setTitle:[textOptions objectAtIndex:newIndex] forState:UIControlStateNormal];
+    if (colorOptions != nil) {
+        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
+    }
+    [self setNeedsDisplay];
 }
 
 @end
