@@ -10,6 +10,13 @@
 
 #import <UIKit/UIKit.h>
 
+#define IOS_OLDER_THAN_6 ( [[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
+
 @interface UIComboBox : UIButton
+
+@property UIViewController *father;
+
+- (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
+    withTextOptions:(NSMutableArray *)textOptions withDefaultOption:(NSUInteger)index;
 
 @end

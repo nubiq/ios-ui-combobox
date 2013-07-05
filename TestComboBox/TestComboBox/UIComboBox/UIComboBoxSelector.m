@@ -58,4 +58,54 @@ UITableView *table;
     return 1;
 }
 
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *CellIdentifier = @"ComboBoxCell";
+    
+    // Important: Don't check the nil comparisson to reload the cell everytime
+    UITableViewCell *cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle
+                                                   reuseIdentifier:CellIdentifier];
+    
+    // Enable cell selection
+    [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    
+    int tableWidth = tableView.frame.size.width;
+    
+    // Defining labels
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
+                                                              [tableView rowHeight])];
+    UILabel *data = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableWidth, 0, 0.7*tableWidth,
+                                                              [tableView rowHeight])];
+    
+    [text setTextAlignment:NSTextAlignmentRight];
+    [data setTextAlignment:NSTextAlignmentLeft];
+    
+    [text setText:@"Hola"];
+    [data setText:@"2"];
+    
+    [text setBackgroundColor:[UIColor clearColor]];
+    [data setBackgroundColor:[UIColor clearColor]];
+    
+    [text setTextColor:[UIColor colorWithRed:0 green:0.27f blue:0.69f alpha:1]];
+    
+    
+    // Adding subviews to the cell
+    [[cell contentView] addSubview:text];
+    [[cell contentView] addSubview:data];
+    
+    [[cell contentView] setAutoresizesSubviews:YES];
+    
+    return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (IOS_OLDER_THAN_6) {
+        [self dismissModalViewControllerAnimated:YES];
+    } else {
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
 @end

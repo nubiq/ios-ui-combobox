@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "UIComboBox.h"
 
 @interface ViewController ()
 
@@ -18,6 +19,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    
+    UIComboBox *comboBox = [[UIComboBox alloc] initWithFrame:CGRectMake(100, 100, 100, 40)
+                                                  withFather:self
+                                             withTextOptions:[NSMutableArray arrayWithObjects:@"Objeto 1",@"Objecto 2", @"Objecto 3", nil]
+                                           withDefaultOption:0];
+    
+    [[self view] addSubview:comboBox];    
 }
 
 - (void)didReceiveMemoryWarning
