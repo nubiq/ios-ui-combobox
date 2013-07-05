@@ -20,9 +20,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    UIComboBox *comboBox = [[UIComboBox alloc] initWithFrame:CGRectMake(100, 100, 100, 40)
+    UIComboBox *comboBox = [[UIComboBox alloc] initWithFrame:CGRectMake(200, 100, 140, 40)
                                                   withFather:self
-                                             withTextOptions:[NSMutableArray arrayWithObjects:@"Objeto 1",@"Objecto 2", @"Objecto 3", nil]
+                                             withTextOptions:[NSMutableArray arrayWithObjects:@"Object 1",@"Object 2", @"Object 3", nil]
                                            withDefaultOption:0];
     
     [[self view] addSubview:comboBox];    

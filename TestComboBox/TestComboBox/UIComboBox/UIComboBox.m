@@ -31,22 +31,54 @@ float version;
     
     [self setTitle:[textOptions objectAtIndex:index] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self setTintColor:[UIColor blueColor]];
+    [self setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
+    [self setTitleShadowColor:[UIColor yellowColor] forState:UIControlStateHighlighted];
+    [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
+    [self setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     
     return self;
 }
 
 - (void)drawRect:(CGRect)rect
-{
-    [super drawRect:rect];
+{    
+    NSUInteger radius = 8;
     
-    CGContextRef ctx=UIGraphicsGetCurrentContext();
-    CGContextSetStrokeColorWithColor(ctx, [UIColor redColor].CGColor);
-    CGContextBeginPath(ctx);
-    CGContextSetLineWidth(ctx, 3.0);
-    CGContextMoveToPoint(ctx,rect.origin.x, rect.origin.y);
-    CGContextAddLineToPoint(ctx, rect.size.width,rect.size.height);
-    CGContextDrawPath(ctx,kCGPathStroke);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    
+    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1);
+    
+    CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
+    CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
+    CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
+                    radius, M_PI, M_PI / 2, 1); //STS fixed
+    CGContextAddLineToPoint(context, rect.origin.x + rect.size.width - radius,
+                            rect.origin.y + rect.size.height);
+    CGContextAddArc(context, rect.origin.x + rect.size.width - radius,
+                    rect.origin.y + rect.size.height - radius, radius, M_PI / 2, 0.0f, 1);
+    CGContextAddLineToPoint(context, rect.origin.x + rect.size.width, rect.origin.y + radius);
+    CGContextAddArc(context, rect.origin.x + rect.size.width - radius, rect.origin.y + radius,
+                    radius, 0.0f, -M_PI / 2, 1);
+    CGContextAddLineToPoint(context, rect.origin.x + radius, rect.origin.y);
+    CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + radius, radius,
+                    -M_PI / 2, M_PI, 1);
+    
+    CGContextFillPath(context);
+    
+    // Draw triangle
+    NSUInteger width = rect.size.height/3;
+    NSUInteger height = rect.size.height/5;
+    CGRect circleRect = CGRectMake(rect.size.width - (width + 10), (rect.size.height - height)/2,
+                                   width, height);
+    
+    CGContextBeginPath(context);
+    CGContextMoveToPoint(context, CGRectGetMinX(circleRect), CGRectGetMinY(circleRect));
+    CGContextAddLineToPoint(context, CGRectGetMaxX(circleRect), CGRectGetMinY(circleRect));
+    CGContextAddLineToPoint(context, CGRectGetMidX(circleRect), CGRectGetMaxY(circleRect));
+    CGContextClosePath(context);
+    
+    CGContextSetRGBFillColor(context, 1, 1, 0, 1);
+    CGContextFillPath(context);
 }
 
 
