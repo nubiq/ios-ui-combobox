@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D90BEFFB17869BAF00F28FCF /* UIComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFA17869BAF00F28FCF /* UIComboBox.m */; };
 		D90BEFFE17869C6B00F28FCF /* UIComboBoxSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */; };
+		D90BF0011786C4A700F28FCF /* UITriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BF0001786C4A700F28FCF /* UITriangleView.m */; };
 		D95D0BC91785A62400FDB41F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BC81785A62400FDB41F /* UIKit.framework */; };
 		D95D0BCB1785A62400FDB41F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BCA1785A62400FDB41F /* Foundation.framework */; };
 		D95D0BCD1785A62400FDB41F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BCC1785A62400FDB41F /* CoreGraphics.framework */; };
@@ -43,6 +44,8 @@
 		D90BEFFA17869BAF00F28FCF /* UIComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComboBox.m; sourceTree = "<group>"; };
 		D90BEFFC17869C6B00F28FCF /* UIComboBoxSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComboBoxSelector.h; sourceTree = "<group>"; };
 		D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComboBoxSelector.m; sourceTree = "<group>"; };
+		D90BEFFF1786C4A700F28FCF /* UITriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITriangleView.h; sourceTree = "<group>"; };
+		D90BF0001786C4A700F28FCF /* UITriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITriangleView.m; sourceTree = "<group>"; };
 		D95D0BC51785A62400FDB41F /* TestComboBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestComboBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95D0BC81785A62400FDB41F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D95D0BCA1785A62400FDB41F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -177,6 +180,8 @@
 				D90BEFFA17869BAF00F28FCF /* UIComboBox.m */,
 				D90BEFFC17869C6B00F28FCF /* UIComboBoxSelector.h */,
 				D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */,
+				D90BEFFF1786C4A700F28FCF /* UITriangleView.h */,
+				D90BF0001786C4A700F28FCF /* UITriangleView.m */,
 			);
 			path = UIComboBox;
 			sourceTree = "<group>";
@@ -297,6 +302,7 @@
 				D95D0BE81785A62400FDB41F /* ViewController.m in Sources */,
 				D90BEFFB17869BAF00F28FCF /* UIComboBox.m in Sources */,
 				D90BEFFE17869C6B00F28FCF /* UIComboBoxSelector.m in Sources */,
+				D90BF0011786C4A700F28FCF /* UITriangleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

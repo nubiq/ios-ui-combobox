@@ -9,6 +9,7 @@
 // - Noelia Sales <noelia@nubiq.es>
 
 #import "UIComboBoxSelector.h"
+#import "UITriangleView.h"
 
 @interface UIComboBoxSelector ()
 
@@ -74,32 +75,57 @@ UITableView *table;
     int tableWidth = tableView.frame.size.width;
     
     // Defining labels
-    UILabel *image = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
-                                                              [tableView rowHeight])];
+    //UILabel *image = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
+    //                                                          [tableView rowHeight])];
     UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableWidth, 0, 0.7*tableWidth,
                                                               [tableView rowHeight])];
-    
-    [image setTextAlignment:NSTextAlignmentRight];
     [text setTextAlignment:NSTextAlignmentLeft];
-    
-    [image setText:@"Hola"];
     [text setText:[[father textOptions] objectAtIndex:[indexPath row]]];
-    
-    [image setBackgroundColor:[UIColor clearColor]];
     [text setBackgroundColor:[UIColor clearColor]];
+    
+    
+    CGRect imageRect = CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
+                                  [tableView rowHeight]);
+    
+    // Draw triangle
+    NSUInteger width = imageRect.size.height/4;
+    NSUInteger height = imageRect.size.height/2;
+    CGRect rect = CGRectMake(imageRect.size.width - (width + 10), (imageRect.size.height - height)/2,
+                                   width, height);
+    
+    UIView *triangle;
+    /*
+    if ([father colorOptions] == nil) {
+        triangle = triangle = [[UITriangleView alloc] initWithFrame:rect
+                                                          withColor:[father decorationColor] withPosition:3];
+    } else {
+        triangle = triangle = [[UITriangleView alloc] initWithFrame:rect
+                                                          withColor:[[father colorOptions] objectAtIndex:[indexPath row]]
+                                                       withPosition:3];
+    }
     
     if ([father index] == [indexPath row]) {
         [text setFont:[UIFont boldSystemFontOfSize:20]];
     } else {
         [text setFont:[UIFont systemFontOfSize:20]];
+    }*/
+    UIColor *presentColor;
+    if ([father colorOptions] == nil) {
+        presentColor = [UIColor blackColor];
+    } else {
+        presentColor = [[father colorOptions] objectAtIndex:[indexPath row]];
     }
     
-    [image setTextColor:[UIColor colorWithRed:0 green:0.27f blue:0.69f alpha:1]];
+    if ([father index] == [indexPath row]) {
+        triangle = [[UITriangleView alloc] initWithFrame:rect
+                                               withColor:presentColor withPosition:3];
+    }
     
+    [text setTextColor:presentColor];
     
     // Adding subviews to the cell
-    [cell addSubview:image];
     [cell addSubview:text];
+    [cell addSubview:triangle];
     
     [cell setAutoresizesSubviews:YES];
     
