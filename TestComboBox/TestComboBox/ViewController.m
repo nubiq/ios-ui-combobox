@@ -25,7 +25,14 @@
                                              withTextOptions:[NSMutableArray arrayWithObjects:@"Object 1",@"Object 2", @"Object 3", nil]
                                            withDefaultOption:0];
     
-    [[self view] addSubview:comboBox];    
+    UIComboBox *comboBox2 = [[UIComboBox alloc] initWithFrame:CGRectMake(400, 100, 140, 40)
+                                                   withFather:self
+                                              withTextOptions:[NSMutableArray arrayWithObjects:@"Object 4",@"Object 5", @"Object 6", nil]
+                                             withColorOptions:[NSMutableArray arrayWithObjects:[UIColor redColor], [UIColor blueColor], [UIColor yellowColor], nil]
+                                            withDefaultOption:0];
+    
+    [[self view] addSubview:comboBox];
+    [[self view] addSubview:comboBox2];
 }
 
 - (void)didReceiveMemoryWarning

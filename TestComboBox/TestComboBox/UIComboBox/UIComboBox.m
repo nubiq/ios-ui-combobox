@@ -18,27 +18,51 @@ float version;
 
 @synthesize father;
 @synthesize textOptions;
+@synthesize colorOptions;
 @synthesize index;
+@synthesize backColor;
+@synthesize decorationColor;
+@synthesize shadowColor;
 
 - (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
-    withTextOptions:(NSMutableArray *)newTextOptions withDefaultOption:(NSUInteger)newIndex
+    withTextOptions:(NSMutableArray *)newTextOptions withColorOptions:(NSMutableArray *)newColors
+  withDefaultOption:(NSUInteger)newIndex
 {
     self = [super initWithFrame:frame];
+    
+    backColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
+    decorationColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    shadowColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     
     [self setTextOptions:newTextOptions];
     [self setIndex:newIndex];
     [self setFather:controller];
+    [self setColorOptions:newColors];
     
     [self setTitle:[textOptions objectAtIndex:index] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor redColor] forState:UIControlStateHighlighted];
-    [self setTitleShadowColor:[UIColor yellowColor] forState:UIControlStateHighlighted];
+    
+    if (colorOptions == nil) {
+        [self setTitleColor:decorationColor forState:UIControlStateNormal];
+    } else {
+        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
+    }
+    
+    [self setTitleShadowColor:shadowColor forState:UIControlStateHighlighted];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     
     return self;
 }
+
+
+- (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
+    withTextOptions:(NSMutableArray *)newTextOptions withDefaultOption:(NSUInteger)newIndex
+{
+    return [self initWithFrame:frame withFather:controller withTextOptions:newTextOptions
+              withColorOptions:nil withDefaultOption:newIndex];
+}
+
 
 - (void)drawRect:(CGRect)rect
 {    
@@ -46,7 +70,7 @@ float version;
     
     CGContextRef context = UIGraphicsGetCurrentContext();
     
-    CGContextSetRGBFillColor(context, 0.2, 0.2, 0.2, 1);
+    CGContextSetFillColorWithColor(context, [backColor CGColor]);
     
     CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
     CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
@@ -77,7 +101,12 @@ float version;
     CGContextAddLineToPoint(context, CGRectGetMidX(circleRect), CGRectGetMaxY(circleRect));
     CGContextClosePath(context);
     
-    CGContextSetRGBFillColor(context, 1, 1, 0, 1);
+    if (colorOptions == nil) {
+        CGContextSetFillColorWithColor(context, [decorationColor CGColor]);
+    } else {
+        CGContextSetFillColorWithColor(context, [[colorOptions objectAtIndex:index] CGColor]);
+    }
+    
     CGContextFillPath(context);
 }
 
@@ -95,6 +124,10 @@ float version;
 {
     [self setIndex:newIndex];
     [self setTitle:[textOptions objectAtIndex:newIndex] forState:UIControlStateNormal];
+    if (colorOptions != nil) {
+        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
+    }
+    [self setNeedsDisplay];
 }
 
 

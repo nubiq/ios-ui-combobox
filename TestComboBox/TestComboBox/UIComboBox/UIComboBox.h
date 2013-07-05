@@ -17,11 +17,23 @@
 @property UIViewController *father;
 
 @property NSMutableArray *textOptions;
+@property NSMutableArray *colorOptions;
 
 @property NSUInteger index;
 
+@property UIColor *backColor;
+
+@property UIColor *decorationColor;
+
+@property UIColor *shadowColor;
+
+
 - (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
     withTextOptions:(NSMutableArray *)textOptions withDefaultOption:(NSUInteger)index;
+
+- (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
+    withTextOptions:(NSMutableArray *)newTextOptions withColorOptions:(NSMutableArray *)newColors
+  withDefaultOption:(NSUInteger)newIndex;
 
 - (void)updateIndex:(NSUInteger)newIndex;
 
