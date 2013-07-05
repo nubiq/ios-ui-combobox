@@ -16,6 +16,8 @@
 
 @implementation UIComboBoxSelector
 
+@synthesize father;
+
 UITableView *table;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -55,7 +57,7 @@ UITableView *table;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 1;
+    return [[father textOptions] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,39 +70,46 @@ UITableView *table;
     
     // Enable cell selection
     [cell setSelectionStyle:UITableViewCellSelectionStyleGray];
-    [cell setBackgroundColor:[UIColor clearColor]];
     
     int tableWidth = tableView.frame.size.width;
     
     // Defining labels
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
+    UILabel *image = [[UILabel alloc] initWithFrame:CGRectMake(0.01*tableWidth, 0, 0.25*tableWidth,
                                                               [tableView rowHeight])];
-    UILabel *data = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableWidth, 0, 0.7*tableWidth,
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableWidth, 0, 0.7*tableWidth,
                                                               [tableView rowHeight])];
     
-    [text setTextAlignment:NSTextAlignmentRight];
-    [data setTextAlignment:NSTextAlignmentLeft];
+    [image setTextAlignment:NSTextAlignmentRight];
+    [text setTextAlignment:NSTextAlignmentLeft];
     
-    [text setText:@"Hola"];
-    [data setText:@"2"];
+    [image setText:@"Hola"];
+    [text setText:[[father textOptions] objectAtIndex:[indexPath row]]];
     
+    [image setBackgroundColor:[UIColor clearColor]];
     [text setBackgroundColor:[UIColor clearColor]];
-    [data setBackgroundColor:[UIColor clearColor]];
     
-    [text setTextColor:[UIColor colorWithRed:0 green:0.27f blue:0.69f alpha:1]];
+    if ([father index] == [indexPath row]) {
+        [text setFont:[UIFont boldSystemFontOfSize:20]];
+    } else {
+        [text setFont:[UIFont systemFontOfSize:20]];
+    }
+    
+    [image setTextColor:[UIColor colorWithRed:0 green:0.27f blue:0.69f alpha:1]];
     
     
     // Adding subviews to the cell
-    [[cell contentView] addSubview:text];
-    [[cell contentView] addSubview:data];
+    [cell addSubview:image];
+    [cell addSubview:text];
     
-    [[cell contentView] setAutoresizesSubviews:YES];
+    [cell setAutoresizesSubviews:YES];
     
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
+    [father updateIndex:[indexPath row]];
+    
     if (IOS_OLDER_THAN_6) {
         [self dismissModalViewControllerAnimated:YES];
     } else {

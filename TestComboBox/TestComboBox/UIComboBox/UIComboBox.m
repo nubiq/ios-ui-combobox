@@ -17,15 +17,20 @@ UIComboBoxSelector *comboBoxSelector;
 float version;
 
 @synthesize father;
+@synthesize textOptions;
+@synthesize index;
 
 - (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
-    withTextOptions:(NSMutableArray *)textOptions withDefaultOption:(NSUInteger)index
+    withTextOptions:(NSMutableArray *)newTextOptions withDefaultOption:(NSUInteger)newIndex
 {
     self = [super initWithFrame:frame];
     
+    [self setTextOptions:newTextOptions];
+    [self setIndex:newIndex];
+    [self setFather:controller];
+    
     [self setTitle:[textOptions objectAtIndex:index] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
-    [self setFather:controller];
     [self setTintColor:[UIColor blueColor]];
     
     return self;
@@ -53,6 +58,13 @@ float version;
     // Drawing code
 }
 */
+
+- (void)updateIndex:(NSUInteger)newIndex
+{
+    [self setIndex:newIndex];
+    [self setTitle:[textOptions objectAtIndex:newIndex] forState:UIControlStateNormal];
+}
+
 
 #pragma mark - Action
 

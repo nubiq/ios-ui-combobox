@@ -16,7 +16,13 @@
 
 @property UIViewController *father;
 
+@property NSMutableArray *textOptions;
+
+@property NSUInteger index;
+
 - (id)initWithFrame:(CGRect)frame withFather:(UIViewController *)controller
     withTextOptions:(NSMutableArray *)textOptions withDefaultOption:(NSUInteger)index;
+
+- (void)updateIndex:(NSUInteger)newIndex;
 
 @end
