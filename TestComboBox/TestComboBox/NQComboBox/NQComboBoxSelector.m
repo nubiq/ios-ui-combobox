@@ -9,14 +9,14 @@
 // - Noelia Sales <noelia@nubiq.es>
 // - Abranhanfer <abrahan@nubiq.es>
 
-#import "UIComboBoxSelector.h"
-#import "UITriangleView.h"
+#import "NQComboBoxSelector.h"
+#import "NQTriangleView.h"
 
-@interface UIComboBoxSelector ()
+@interface NQComboBoxSelector ()
 
 @end
 
-@implementation UIComboBoxSelector
+@implementation NQComboBoxSelector
 
 @synthesize father, frame, heigthRow;
 
@@ -124,7 +124,7 @@ UITableView *table;
     // Defining triangle view
     UIView *triangle;
     if ([father index] == [indexPath row]) {
-        triangle = [[UITriangleView alloc] initWithFrame:rect
+        triangle = [[NQTriangleView alloc] initWithFrame:rect
                                                withColor:backgroundColor withPosition:3];
         [cell addSubview:triangle];
         [text setTextColor:backgroundColor];

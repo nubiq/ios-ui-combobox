@@ -9,12 +9,12 @@
 // - Noelia Sales <noelia@nubiq.es>
 // - Abranhanfer <abrahan@nubiq.es>
 
-#import "UIComboBox.h"
-#import "UIComboBoxSelector.h"
+#import "NQComboBox.h"
+#import "NQComboBoxSelector.h"
 
-@implementation UIComboBox
+@implementation NQComboBox
 
-UIComboBoxSelector *comboBoxSelector;
+NQComboBoxSelector *comboBoxSelector;
 float version;
 
 @synthesize father;
@@ -117,7 +117,7 @@ float version;
 - (IBAction)buttonPressed:(id)sender
 {
     CGRect rectToDraw = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.selfFrame.size.width, self.selfFrame.size.height * [textOptions count]);
-    comboBoxSelector = [[UIComboBoxSelector alloc] init];
+    comboBoxSelector = [[NQComboBoxSelector alloc] init];
     [comboBoxSelector setFather:self];
     [comboBoxSelector setFrame:rectToDraw];
     [comboBoxSelector setHeigthRow:self.selfFrame.size.height];

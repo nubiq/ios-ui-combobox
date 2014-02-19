@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIComboBox : UIButton
+@interface NQComboBox : UIButton
 
 #pragma mark - Attributes
 /**

@@ -10,14 +10,14 @@
 // - Abranhanfer <abrahan@nubiq.es>
 
 #import <UIKit/UIKit.h>
-#import "UIComboBox.h"
+#import "NQComboBox.h"
 
-@interface UIComboBoxSelector : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
+@interface NQComboBoxSelector : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 /**
  * Link to the combo box itself.
  */
-@property UIComboBox *father;
+@property NQComboBox *father;
 
 @property (nonatomic) CGRect frame;
 

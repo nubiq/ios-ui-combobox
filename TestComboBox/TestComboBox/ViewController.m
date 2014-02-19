@@ -7,7 +7,7 @@
 //
 
 #import "ViewController.h"
-#import "UIComboBox.h"
+#import "NQComboBox.h"
 
 @interface ViewController ()
 
@@ -20,12 +20,12 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
     
-    UIComboBox *comboBox = [[UIComboBox alloc] initWithFrame:CGRectMake(200, 100, 140, 40)
+    NQComboBox *comboBox = [[NQComboBox alloc] initWithFrame:CGRectMake(200, 100, 140, 40)
                                                   withFather:self
                                              withTextOptions:[NSMutableArray arrayWithObjects:@"Object 1",@"Object 2", @"Object 3", nil]
                                            withDefaultOption:0];
     
-    UIComboBox *comboBox2 = [[UIComboBox alloc] initWithFrame:CGRectMake(400, 100, 140, 40)
+    NQComboBox *comboBox2 = [[NQComboBox alloc] initWithFrame:CGRectMake(400, 100, 140, 40)
                                                    withFather:self
                                               withTextOptions:[NSMutableArray arrayWithObjects:@"Object 4",@"Object 5", @"Object 6", nil]
                                              withColorOptions:[NSMutableArray arrayWithObjects:[UIColor redColor], [UIColor blueColor], [UIColor yellowColor], nil]

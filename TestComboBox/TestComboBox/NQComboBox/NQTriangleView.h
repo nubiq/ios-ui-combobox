@@ -11,7 +11,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UITriangleView : UIView
+@interface NQTriangleView : UIView
 
 /**
  * Color of the triangle.

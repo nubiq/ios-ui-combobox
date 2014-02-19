@@ -7,9 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D90BEFFB17869BAF00F28FCF /* UIComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFA17869BAF00F28FCF /* UIComboBox.m */; };
-		D90BEFFE17869C6B00F28FCF /* UIComboBoxSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */; };
-		D90BF0011786C4A700F28FCF /* UITriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BF0001786C4A700F28FCF /* UITriangleView.m */; };
+		D90BEFFB17869BAF00F28FCF /* NQComboBox.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFA17869BAF00F28FCF /* NQComboBox.m */; };
+		D90BEFFE17869C6B00F28FCF /* NQComboBoxSelector.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BEFFD17869C6B00F28FCF /* NQComboBoxSelector.m */; };
+		D90BF0011786C4A700F28FCF /* NQTriangleView.m in Sources */ = {isa = PBXBuildFile; fileRef = D90BF0001786C4A700F28FCF /* NQTriangleView.m */; };
 		D95D0BC91785A62400FDB41F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BC81785A62400FDB41F /* UIKit.framework */; };
 		D95D0BCB1785A62400FDB41F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BCA1785A62400FDB41F /* Foundation.framework */; };
 		D95D0BCD1785A62400FDB41F /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D95D0BCC1785A62400FDB41F /* CoreGraphics.framework */; };
@@ -40,12 +40,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		D90BEFF917869BAF00F28FCF /* UIComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComboBox.h; sourceTree = "<group>"; };
-		D90BEFFA17869BAF00F28FCF /* UIComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComboBox.m; sourceTree = "<group>"; };
-		D90BEFFC17869C6B00F28FCF /* UIComboBoxSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UIComboBoxSelector.h; sourceTree = "<group>"; };
-		D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UIComboBoxSelector.m; sourceTree = "<group>"; };
-		D90BEFFF1786C4A700F28FCF /* UITriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UITriangleView.h; sourceTree = "<group>"; };
-		D90BF0001786C4A700F28FCF /* UITriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UITriangleView.m; sourceTree = "<group>"; };
+		D90BEFF917869BAF00F28FCF /* NQComboBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NQComboBox.h; sourceTree = "<group>"; };
+		D90BEFFA17869BAF00F28FCF /* NQComboBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NQComboBox.m; sourceTree = "<group>"; };
+		D90BEFFC17869C6B00F28FCF /* NQComboBoxSelector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NQComboBoxSelector.h; sourceTree = "<group>"; };
+		D90BEFFD17869C6B00F28FCF /* NQComboBoxSelector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NQComboBoxSelector.m; sourceTree = "<group>"; };
+		D90BEFFF1786C4A700F28FCF /* NQTriangleView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NQTriangleView.h; sourceTree = "<group>"; };
+		D90BF0001786C4A700F28FCF /* NQTriangleView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NQTriangleView.m; sourceTree = "<group>"; };
 		D95D0BC51785A62400FDB41F /* TestComboBox.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TestComboBox.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D95D0BC81785A62400FDB41F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D95D0BCA1785A62400FDB41F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -128,7 +128,7 @@
 		D95D0BCE1785A62400FDB41F /* TestComboBox */ = {
 			isa = PBXGroup;
 			children = (
-				D95D0C061785A65E00FDB41F /* UIComboBox */,
+				D95D0C061785A65E00FDB41F /* NQComboBox */,
 				D95D0BD71785A62400FDB41F /* AppDelegate.h */,
 				D95D0BD81785A62400FDB41F /* AppDelegate.m */,
 				D95D0BE01785A62400FDB41F /* MainStoryboard_iPhone.storyboard */,
@@ -173,17 +173,17 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		D95D0C061785A65E00FDB41F /* UIComboBox */ = {
+		D95D0C061785A65E00FDB41F /* NQComboBox */ = {
 			isa = PBXGroup;
 			children = (
-				D90BEFF917869BAF00F28FCF /* UIComboBox.h */,
-				D90BEFFA17869BAF00F28FCF /* UIComboBox.m */,
-				D90BEFFC17869C6B00F28FCF /* UIComboBoxSelector.h */,
-				D90BEFFD17869C6B00F28FCF /* UIComboBoxSelector.m */,
-				D90BEFFF1786C4A700F28FCF /* UITriangleView.h */,
-				D90BF0001786C4A700F28FCF /* UITriangleView.m */,
+				D90BEFF917869BAF00F28FCF /* NQComboBox.h */,
+				D90BEFFA17869BAF00F28FCF /* NQComboBox.m */,
+				D90BEFFC17869C6B00F28FCF /* NQComboBoxSelector.h */,
+				D90BEFFD17869C6B00F28FCF /* NQComboBoxSelector.m */,
+				D90BEFFF1786C4A700F28FCF /* NQTriangleView.h */,
+				D90BF0001786C4A700F28FCF /* NQTriangleView.m */,
 			);
-			path = UIComboBox;
+			path = NQComboBox;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -300,9 +300,9 @@
 				D95D0BD51785A62400FDB41F /* main.m in Sources */,
 				D95D0BD91785A62400FDB41F /* AppDelegate.m in Sources */,
 				D95D0BE81785A62400FDB41F /* ViewController.m in Sources */,
-				D90BEFFB17869BAF00F28FCF /* UIComboBox.m in Sources */,
-				D90BEFFE17869C6B00F28FCF /* UIComboBoxSelector.m in Sources */,
-				D90BF0011786C4A700F28FCF /* UITriangleView.m in Sources */,
+				D90BEFFB17869BAF00F28FCF /* NQComboBox.m in Sources */,
+				D90BEFFE17869C6B00F28FCF /* NQComboBoxSelector.m in Sources */,
+				D90BF0011786C4A700F28FCF /* NQTriangleView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

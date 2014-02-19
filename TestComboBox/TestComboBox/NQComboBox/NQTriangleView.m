@@ -9,9 +9,9 @@
 // - Noelia Sales <noelia@nubiq.es>
 // - Abranhanfer <abrahan@nubiq.es>
 
-#import "UITriangleView.h"
+#import "NQTriangleView.h"
 
-@implementation UITriangleView
+@implementation NQTriangleView
 
 @synthesize mainColor;
 @synthesize position;
