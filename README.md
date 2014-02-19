@@ -1,4 +1,4 @@
-# Combo Box for iOS
+# Combo Box for iOS 7
 
 ## Included classes
 
@@ -9,8 +9,8 @@
 ## View
 
 ![Simple combo box.](/Documentation/ComboBox-Foreground.png "Combo box view")
-![Combo box selector.](/Documentation/ComboBox-Selector.png "Combo box selector")
-![Combo box selector with colors.](/Documentation/ComboBox-SelectorColors.png "Combo box selector using colors")
+![Combo box selector.](/Documentation/ComboBox iOS 7-Selector 1.png "Combo box selector example 1")
+![Combo box selector with colors.](/Documentation/ComboBox iOS 7-Selector 2.png "Combo box selector example 2")
 
 ## Use
 
@@ -40,3 +40,4 @@ UIComboBox *comboBox2 = [[UIComboBox alloc] initWithFrame:CGRectMake(400, 100, 1
 ## Author
 
 * Noelia Sales <noelia@nubiq.es>
+* Abrahanfer <abrahan@nubiq.es>
