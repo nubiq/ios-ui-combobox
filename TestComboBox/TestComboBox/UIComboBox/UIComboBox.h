@@ -3,14 +3,13 @@
 //  TestComboBox
 //
 //  Created by Noelia on 05/07/13.
-//  Copyright (c) 2013 Noelia. All rights reserved.
+//  Copyright (c) 2013,2014 NubiQ Inc.
 //
 // Code in this file:
 // - Noelia Sales <noelia@nubiq.es>
+// - Abranhanfer <abrahan@nubiq.es>
 
 #import <UIKit/UIKit.h>
-
-#define IOS_OLDER_THAN_6 ( [[[UIDevice currentDevice] systemVersion] floatValue] < 6.0)
 
 @interface UIComboBox : UIButton
 
@@ -50,6 +49,9 @@
  * Secondary color of the combo box appearance.
  */
 @property UIColor *shadowColor;
+
+
+@property (nonatomic) CGRect selfFrame;
 
 #pragma mark - Methods
 

@@ -3,10 +3,11 @@
 //  TestComboBox
 //
 //  Created by Noelia on 05/07/13.
-//  Copyright (c) 2013 Noelia. All rights reserved.
+//  Copyright (c) 2013,2014 Nubiq Inc.
 //
 // Code in this file:
 // - Noelia Sales <noelia@nubiq.es>
+// - Abranhanfer <abrahan@nubiq.es>
 
 #import <UIKit/UIKit.h>
 

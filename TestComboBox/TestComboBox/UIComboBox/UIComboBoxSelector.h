@@ -3,19 +3,24 @@
 //  TestComboBox
 //
 //  Created by Noelia on 05/07/13.
-//  Copyright (c) 2013 Noelia. All rights reserved.
+//  Copyright (c) 2013,2014 NubiQ Inc.
 //
 // Code in this file:
 // - Noelia Sales <noelia@nubiq.es>
+// - Abranhanfer <abrahan@nubiq.es>
 
 #import <UIKit/UIKit.h>
 #import "UIComboBox.h"
 
-@interface UIComboBoxSelector : UIViewController <UITableViewDataSource, UITableViewDelegate>
+@interface UIComboBoxSelector : UIViewController <UITableViewDataSource, UITableViewDelegate, UIGestureRecognizerDelegate>
 
 /**
  * Link to the combo box itself.
  */
 @property UIComboBox *father;
+
+@property (nonatomic) CGRect frame;
+
+@property (nonatomic) int heigthRow;
 
 @end

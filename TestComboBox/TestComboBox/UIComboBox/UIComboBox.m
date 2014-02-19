@@ -3,10 +3,11 @@
 //  TestComboBox
 //
 //  Created by Noelia on 05/07/13.
-//  Copyright (c) 2013 Noelia. All rights reserved.
+//  Copyright (c) 2013,2014 NubiQ Inc.
 //
 // Code in this file:
 // - Noelia Sales <noelia@nubiq.es>
+// - Abranhanfer <abrahan@nubiq.es>
 
 #import "UIComboBox.h"
 #import "UIComboBoxSelector.h"
@@ -23,6 +24,7 @@ float version;
 @synthesize backColor;
 @synthesize decorationColor;
 @synthesize shadowColor;
+@synthesize selfFrame;
 
 #pragma mark - Object lifecycle
 
@@ -31,9 +33,11 @@ float version;
   withDefaultOption:(NSUInteger)newIndex
 {
     self = [super initWithFrame:frame];
+    self.selfFrame = frame;
     
     backColor = [UIColor colorWithRed:0.2 green:0.2 blue:0.2 alpha:1];
-    decorationColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    //decorationColor = [UIColor colorWithRed:0.95 green:0.95 blue:0.95 alpha:1];
+    decorationColor = [UIColor colorWithRed:162.0/255.0 green:162.0/255.0 blue:162.0/255.0 alpha:1];
     shadowColor = [UIColor colorWithRed:0.8 green:0.8 blue:0.8 alpha:1];
     
     [self setTextOptions:newTextOptions];
@@ -44,13 +48,7 @@ float version;
     [self setTitle:[textOptions objectAtIndex:index] forState:UIControlStateNormal];
     [self addTarget:self action:@selector(buttonPressed:) forControlEvents:UIControlEventTouchUpInside];
     
-    if (colorOptions == nil) {
-        [self setTitleColor:decorationColor forState:UIControlStateNormal];
-    } else {
-        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
-    }
-    
-    [self setTitleShadowColor:shadowColor forState:UIControlStateHighlighted];
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setContentHorizontalAlignment:UIControlContentHorizontalAlignmentLeft];
     [self setContentEdgeInsets:UIEdgeInsetsMake(0, 10, 0, 0)];
     
@@ -73,9 +71,11 @@ float version;
     
     // Drawing background
     CGContextRef context = UIGraphicsGetCurrentContext();
-    
-    CGContextSetFillColorWithColor(context, [backColor CGColor]);
-    
+    if (colorOptions == nil) {
+        CGContextSetFillColorWithColor(context, [backColor CGColor]);
+    } else {
+        CGContextSetFillColorWithColor(context, [[colorOptions objectAtIndex:index] CGColor]);
+    }
     CGContextMoveToPoint(context, rect.origin.x, rect.origin.y + radius);
     CGContextAddLineToPoint(context, rect.origin.x, rect.origin.y + rect.size.height - radius);
     CGContextAddArc(context, rect.origin.x + radius, rect.origin.y + rect.size.height - radius,
@@ -105,11 +105,9 @@ float version;
     CGContextAddLineToPoint(context, CGRectGetMidX(circleRect), CGRectGetMaxY(circleRect));
     CGContextClosePath(context);
     
-    if (colorOptions == nil) {
-        CGContextSetFillColorWithColor(context, [decorationColor CGColor]);
-    } else {
-        CGContextSetFillColorWithColor(context, [[colorOptions objectAtIndex:index] CGColor]);
-    }
+    
+    CGContextSetFillColorWithColor(context, [[UIColor whiteColor] CGColor]);
+
     
     CGContextFillPath(context);
 }
@@ -117,30 +115,23 @@ float version;
 #pragma mark - Action
 
 - (IBAction)buttonPressed:(id)sender
-{    
-    // Call modal view to edit address
+{
+    CGRect rectToDraw = CGRectMake(self.frame.origin.x, self.frame.origin.y, self.selfFrame.size.width, self.selfFrame.size.height * [textOptions count]);
     comboBoxSelector = [[UIComboBoxSelector alloc] init];
     [comboBoxSelector setFather:self];
-    [comboBoxSelector setModalPresentationStyle:UIModalPresentationFormSheet];
-    [comboBoxSelector setModalTransitionStyle:UIModalTransitionStyleCrossDissolve];
-    
-    
-    if (IOS_OLDER_THAN_6) {
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        [father presentModalViewController:comboBoxSelector animated:YES];
-#pragma GCC diagnostic warning "-Wdeprecated-declarations"
-    } else {
-        [father presentViewController:comboBoxSelector animated:YES completion:nil];
-    }
+    [comboBoxSelector setFrame:rectToDraw];
+    [comboBoxSelector setHeigthRow:self.selfFrame.size.height];
+   
+    [self.father addChildViewController:comboBoxSelector];
+    [self.father.view addSubview:[comboBoxSelector view]];
 }
 
 - (void)updateIndex:(NSUInteger)newIndex
 {
     [self setIndex:newIndex];
     [self setTitle:[textOptions objectAtIndex:newIndex] forState:UIControlStateNormal];
-    if (colorOptions != nil) {
-        [self setTitleColor:[colorOptions objectAtIndex:index] forState:UIControlStateNormal];
-    }
+    
+    [self setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     [self setNeedsDisplay];
 }
 

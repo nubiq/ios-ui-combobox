@@ -3,10 +3,11 @@
 //  TestComboBox
 //
 //  Created by Noelia on 05/07/13.
-//  Copyright (c) 2013 Noelia. All rights reserved.
+//  Copyright (c) 2013,2014 NubiQ Inc.
 //
 // Code in this file:
 // - Noelia Sales <noelia@nubiq.es>
+// - Abranhanfer <abrahan@nubiq.es>
 
 #import "UIComboBoxSelector.h"
 #import "UITriangleView.h"
@@ -17,7 +18,7 @@
 
 @implementation UIComboBoxSelector
 
-@synthesize father;
+@synthesize father, frame, heigthRow;
 
 UITableView *table;
 
@@ -32,18 +33,33 @@ UITableView *table;
     return self;
 }
 
+- (void) loadView
+{
+    self.view = [[UIView alloc] initWithFrame:self.frame];
+}
+
 - (void)viewDidLoad
 {
-    [super viewDidLoad];    
-    
+    [super viewDidLoad];
+}
+
+- (void) viewWillAppear:(BOOL)animated
+{
     table = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,
-                                                          self.view.frame.size.height)];
+                                                          self.view.frame.size.height) style:UITableViewStylePlain];
     [table setBounces:NO];
-    //[table setBackgroundColor:[UIColor clearColor]];
     [table setDelegate:self];
     [table setDataSource:self];
-    
     [[self view] addSubview:table];
+    [table setUserInteractionEnabled:true];
+    [table setSeparatorInset:UIEdgeInsetsZero];
+    [table setBackgroundColor:[UIColor clearColor]];
+    [table setRowHeight:self.heigthRow];
+    
+    table.layer.masksToBounds = YES;
+    table.layer.cornerRadius = 5;
+    table.layer.borderWidth = 1;
+    table.layer.borderColor = [[[father colorOptions] objectAtIndex:[father index]] CGColor];
 }
 
 - (void)didReceiveMemoryWarning
@@ -75,20 +91,24 @@ UITableView *table;
 
     // The colors to use depend on the combo box
     UIColor *presentColor;
+    UIColor *backgroundColor;
     if ([father colorOptions] == nil) {
+        backgroundColor = [UIColor whiteColor];
         presentColor = [UIColor blackColor];
     } else {
-        presentColor = [[father colorOptions] objectAtIndex:[indexPath row]];
+       presentColor = [[father colorOptions] objectAtIndex:[indexPath row]];
+       backgroundColor = [UIColor whiteColor];
     }
-        
+    
+    
+    [cell setBackgroundColor:backgroundColor];
     // Defining text label
-    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(0.3*tableView.frame.size.width, 0,
-                                                              0.7*tableView.frame.size.width,
-                                                              [tableView rowHeight])];
+    UILabel *text = [[UILabel alloc] initWithFrame:CGRectMake(.3*tableView.frame.size.width, 0,
+                                                              .7*tableView.frame.size.width,
+                                                              [table rowHeight])];
     [text setTextAlignment:NSTextAlignmentLeft];
     [text setText:[[father textOptions] objectAtIndex:[indexPath row]]];
     [text setBackgroundColor:[UIColor clearColor]];
-    [text setTextColor:presentColor];
     
     // Defining size of the triangle view
     CGRect imageRect = CGRectMake(0.01*tableView.frame.size.width, 0,
@@ -100,16 +120,23 @@ UITableView *table;
     CGRect rect = CGRectMake(imageRect.size.width - (width + 10), (imageRect.size.height - height)/2,
                                    width, height);
     
+    
     // Defining triangle view
     UIView *triangle;
     if ([father index] == [indexPath row]) {
         triangle = [[UITriangleView alloc] initWithFrame:rect
-                                               withColor:presentColor withPosition:3];
+                                               withColor:backgroundColor withPosition:3];
+        [cell addSubview:triangle];
+        [text setTextColor:backgroundColor];
+        [cell setBackgroundColor:presentColor];
+    } else {
+        [text setTextColor:presentColor];
+        [cell setBackgroundColor:backgroundColor];
     }
     
     // Adding subviews to the cell
     [cell addSubview:text];
-    [cell addSubview:triangle];
+    
     
     [cell setAutoresizesSubviews:YES];
     
@@ -120,14 +147,13 @@ UITableView *table;
 {
     // Update info in the combo box
     [father updateIndex:[indexPath row]];
-    
-    if (IOS_OLDER_THAN_6) {
-#pragma GCC diagnostic ignored "-Wdeprecated-declarations"
-        [self dismissModalViewControllerAnimated:YES];
-#pragma GCC diagnostic warning "-Wdeprecated-declarations"
-    } else {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }
+    [self.view removeFromSuperview];
+}
+
+// Allow autorotate in iOS 5.1
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
+{
+    return YES;
 }
 
 @end
