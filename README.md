@@ -2,9 +2,9 @@
 
 ## Included classes
 
-* UIComboBox
-* UIComboBoxSelector
-* UITriangleView
+* NQComboBox
+* NQComboBoxSelector
+* NQTriangleView
 
 ## View
 
