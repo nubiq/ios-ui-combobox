@@ -9,7 +9,9 @@
 ## View
 
 ![Simple combo box.](/Documentation/ComboBox-Foreground.png "Combo box view")
+
 ![Combo box selector.](/Documentation/ComboBox iOS 7-Selector 1.png "Combo box selector example 1")
+
 ![Combo box selector with colors.](/Documentation/ComboBox iOS 7-Selector 2.png "Combo box selector example 2")
 
 ## Use
